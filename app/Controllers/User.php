@@ -3,18 +3,18 @@ use App\Models\UserModel;
 class User extends BaseController
 {
 	//display form sigin
-	public function sigin()
+	public function siginAccount()
 	{
 		return view('auths/login');
 	}
 	//display form sigup
-	public function sigup()
+	public function sigupAccount()
 	{
 		return view('auths/register');
 	}
 	
 	//check login form
-	public function login()
+	public function loginAccount()
 	{
 		helper(['form']);
 		$data = [];
@@ -25,7 +25,7 @@ class User extends BaseController
 			];
 			$error = [
 				'password' => [
-					'validateUser' => 'password not match!'
+					'validateUser' => 'password not match!!!'
 				]
 			];
 			$email = $this->request->getVar('email');
@@ -53,26 +53,24 @@ class User extends BaseController
 			'email' => $user['email'],
 			'role' => $user['role']
 		];
-
 		session()->set($data);
 		return true;
 	}	
 	// check register 
-	public function register()
+	public function registerAccount()
 	{
 		$data = [];
 		helper(['form']);
 		if($this->request->getMethod() == "post"){
 			$rules = [
-				'email'=>'required|valid_email',
-				'password'=>'required',
+				'email'=>'trim|required|valid_email',
+				'password'=>'required|trim',
 				'address'=>'required',
 			];
 			 if(!$this->validate($rules)){
 				$data['validation'] = $this->validator;
 				return view('auths/register',$data);
-				
-			
+
 			}else{
 				$userModel = new UserModel();
 				$email = $this->request->getVar('email');

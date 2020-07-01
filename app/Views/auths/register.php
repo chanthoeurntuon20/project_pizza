@@ -37,7 +37,6 @@
           <?php endif; ?>
         </div>
       </div>
-     
       <div class="auth__form_actions">
         <button class="btn btn-primary btn-lg btn-block">
           NEXT

@@ -14,7 +14,7 @@
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item">
         <div class="row">
-            <a class="nav-link text-uppercase" href="/signin">Rady.y |</a>
+            <a class="nav-link text-uppercase" href="/signin"><?= substr((session()->get('email')),5)?>|</a>
             <a class="nav-link text-uppercase" href="signin">Logout</a>
         </div>
       </li>

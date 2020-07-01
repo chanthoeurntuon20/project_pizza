@@ -32,8 +32,8 @@
 						
 						<?php if(session()->get('role') == 1):?>
 						<td>
-							<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
+							<a href="pizza/updateForm/<?= $pizza['id']?>" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info editPizza" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
+							<a href="pizza/delete/<?= $pizza['id']?>" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
 						</td>
 					<?php endif ?>
 					</tr>
@@ -60,7 +60,7 @@
         
         <!-- Modal body -->
         <div class="modal-body text-right">
-		<form  action="pizza/creat" method="post">
+		<form  action="pizza/create" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Pizza name" name = "name">
 				</div>
@@ -71,10 +71,8 @@
 					<input type="number" class="form-control" placeholder="Prize in dollars" name = "price">
 				</div>
 				<?php if(isset($validation)): ?>
-					<div class="col-12">
 					<div class="alert alert-danger" role="alert">
 						<?= $validation->listErrors(); ?>
-					</div>
 					</div>
           		<?php endif; ?>
 				<a data-dismiss="modal" class="closeModal">DISCARD</a>
@@ -103,17 +101,23 @@
         
         <!-- Modal body -->
         <div class="modal-body text-right">
-			<form  action="pizza/update" method="post">
+			<form  action="pizza/updatePizza" method="post">
+			<input type="hidden" name = "id" id = "update_id" value = "4">
+
 				<div class="form-group">
-					<input type="text" class="form-control" name = "name" value = "<?= $pizza['name'] ?>" >
+					<input type="text" class="form-control" name = "name" id = "name" value>
 				</div>
 				<div class="form-group">
-					<textarea name=""  class="form-control" name = "ingredient" value = "<?= $pizza['ingredient'] ?> "></textarea>
+					<textarea   class="form-control" name = "ingredient" id = "ingredient" ></textarea>
 				</div>
 				<div class="form-group">
-					<input type="number" class="form-control" name = "price" value = "<?= $pizza['price'] ?> ">
+					<input type="number" class="form-control" name = "price" id = "price" >
 				</div>
-				
+				<?php if(isset($validation)): ?>
+					<div class="alert alert-danger" role="alert">
+						<?= $validation->listErrors(); ?>
+					</div>
+          		<?php endif; ?>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;
 		  <input type="submit" value="UPDATE" class="createBtn text-warning">
@@ -122,5 +126,21 @@
       </div>
     </div>
   </div>
+  <script>
+	 $(document).ready(function(){
+		$('.editPizza').on('click',function(){
+			$tr = $(this).closest('tr');
+			var data = $tr.children('td').map(function(){
+				return $(this).text();
+			}).get();
+			console.log(data)
+			//$('#update_id').val(data[]);
+			$('#name').val(data[0]);
+			$('#ingredient').val(data[1]);
+			$('#price').val(data[2]);
+		});
+	})
+ </script>
   <!-- =================================END MODEL UPDATE==================================================== -->
 <?= $this->endSection() ?>
+ 

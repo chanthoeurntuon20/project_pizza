@@ -12,7 +12,7 @@ class UserModel extends Model
     public function registerUser($userInfo){
         $this->insert([
             'email'=>$userInfo['email'],
-            'password'=>$userInfo['password'],
+            'password'=>password_hash($userInfo['password'],PASSWORD_DEFAULT),
             'address'=>$userInfo['address'],
             'role'=>$userInfo['role'],
         ]);
