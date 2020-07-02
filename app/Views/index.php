@@ -2,12 +2,28 @@
 <?= $this->section('content') ?>
 <?= $this->include('layouts/navbar') ?>
 <div class="container mt-5">
+			<!-- alert message success if user correctly information-->
+		<?php if(session()->get('success')): ?>
+			<div class="alert alert-success alert-dismissible fade show" >
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>Success!   </strong><?= session()->get('success') ?>
+			</div>
+			
+		<?php endif ?>
+			<!-- alert message success if user incorrect information-->
+		<?php if(session()->get('error')): ?>
+				<div class="alert alert-danger alert-dismissible fade show">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Error Message!:   </strong><?= session()->get('error')->listErrors() ?>
+				</div>
+		<?php endif ?>
 	<div class="row">
 		<div class="col-2"></div>
 		<div class="col-8">
 			<div class="text-right">
+			<!-- check if user as manager it will show button add -->
 			<?php if(session()->get('role') == "manager"):?>
-						<a href="" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
+					<a href="" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
 						<i class="material-icons float-left" data-toggle="tooltip" title="Add Pizza!" data-placement="left">add</i>&nbsp;Add
 					</a>
 			<?php endif ?>
@@ -30,14 +46,14 @@
 					<td class="pizzaName"><?= $pizza['name']?></td>
 					<td><?= $pizza['ingredient']?></td>
 					<td class="text-success font-weight-bolder"><?= $pizza['price']?></td>
-
+				<!-- check if user as manager it will show button delete and update -->
 					<?php if(session()->get('role') == "manager"):?>
 					<td>
 						<a href="pizza/updateForm/<?= $pizza['id']?>" data-toggle="modal" data-target="#updatePizza"><i
 								class="material-icons text-info editPizza" data-toggle="tooltip" title="Edit Pizza!"
 								data-placement="left">edit</i></a>
 						<a href="pizza/delete/<?= $pizza['id']?>" data-toggle="tooltip" title="Delete Pizza!"
-							data-placement="right"><i class="material-icons text-danger">delete</i></a>
+							data-placement="right"><i class="material-icons text-danger" onclick="return confirm('Are you sure you want to delete this pizza?');">delete</i></a>
 					</td>
 					<?php endif ?>
 				</tr>

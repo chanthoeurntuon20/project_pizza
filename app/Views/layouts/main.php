@@ -23,7 +23,7 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });
-      
+      //get value from modal form
 	 $(document).ready(function(){
 		$('.editPizza').on('click',function(){
 			$tr = $(this).closest('tr');

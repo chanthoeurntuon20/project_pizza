@@ -15,9 +15,9 @@ class Pizza extends BaseController
 		if($this->request->getMethod() == "post"){
 			helper(['form']);
 			$rules = [
-				'name'=>'required',
+				'name'=>'required|alpha_space',
 				'price'=>'required|min_length[1]|max_length[50]',
-				'ingredient'=>'required',
+				'ingredient'=>'required|alpha',
 				
 			];	
 			 if($this->validate($rules)){
@@ -31,13 +31,17 @@ class Pizza extends BaseController
 					'ingredient'=>$pizzaIngredient
 				);
 				$pizzaModel->createPizza($pizzaData);
-				return redirect()->to('/pizza');
+				$session = session();
+                $session->setFlashdata('success','Create New Pizza!');
 
 			}else{
-				$data['validation'] = $this->validator;
-				return view('/index',$data);
+				$sessionError = session();
+                $validation = $this->validator;
+                $sessionError->setFlashdata('error', $validation);
 			}
 		}
+		return redirect()->to('/pizza');
+
 	}
 	//delete pizza
 	public function deletePizza($id){
@@ -51,7 +55,7 @@ class Pizza extends BaseController
 		if($this->request->getMethod() == "post"){
 			helper(['form']);
 			$rules = [
-				'name'=>'required',
+				'name'=>'required|alpha_space',
 				'price'=>'required|min_length[1]|max_length[50]',
 				'ingredient'=>'required',
 			];
@@ -67,12 +71,15 @@ class Pizza extends BaseController
 					'ingredient'=>$pizzaIngredient
 				);
 				$pizzaModel->update($id,$pizzaData);
-				return redirect()->to('/pizza');
+				$sessionSuccess = session();
+                $sessionSuccess->setFlashdata('success','Successful update pizza!');
 			}else{
-				$data['validation'] = $this->validator;
-				return view('/index',$data);
+				$sessionError = session();
+                $validation = $this->validator;
+                $sessionError->setFlashdata('error', $validation);
 			}
 		}
+		return redirect()->to('/pizza');
 }
 	//--------------------------------------------------------------------
 }

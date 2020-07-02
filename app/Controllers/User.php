@@ -25,21 +25,25 @@ class User extends BaseController
 			];
 			$error = [
 				'password' => [
-					'validateUser' => 'Your password not match!!!'
+					'validateUser' => 'Your eamil and password is not match!'
 				]
 			];
-			$email = $this->request->getVar('email');
 			if(!$this->validate($rules,$error)){
-				$data['message'] = $this->validator;
+				$sessionError = session();
+                $validation = $this->validator;
+                $sessionError->setFlashdata('error', $validation);
+				return view('auths/login');
 			}else{
 				$model = new UserModel();
+				$email = $this->request->getVar('email');
 				$user = $model->where('email',$email)->first();
 				$this->setUserSession($user);
-				return redirect()->to('/pizza');
+				$sessionSuccess = session();
+                $sessionSuccess->setFlashdata('success','Login successfull!');
 			}
 
 		}
-		return view('auths/login',$data);
+		return redirect()->to('/pizza');
 	}
 // get value from database
 	public function setUserSession($user){
@@ -67,8 +71,10 @@ class User extends BaseController
 			];
 			// validate user information when user register form
 			 if(!$this->validate($rules)){
-				$data['validation'] = $this->validator;
-				return view('auths/register',$data);
+				$sessionError = session();
+                $validation = $this->validator;
+                $sessionError->setFlashdata('error', $validation);
+				return view('auths/register');
 
 			}else{
 				$userModel = new UserModel();
@@ -92,7 +98,7 @@ class User extends BaseController
 				$userModel->registerUser($userData);
 				$session = session();
 				// sett session on register form when successfull register
-				$session->setFlashdata('success','Register');
+				$session->setFlashdata('success','Successful Register!');
 				return redirect()->to('/login');
 			}
 		}
