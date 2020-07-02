@@ -49,7 +49,7 @@
 				<!-- check if user as manager it will show button delete and update -->
 					<?php if(session()->get('role') == "manager"):?>
 					<td>
-						<a href="pizza/updateForm/<?= $pizza['id']?>" data-toggle="modal" data-target="#updatePizza"><i
+						<a href="" data-toggle="modal" data-target="#updatePizza"><i
 								class="material-icons text-info editPizza" data-toggle="tooltip" title="Edit Pizza!"
 								data-placement="left">edit</i></a>
 						<a href="pizza/delete/<?= $pizza['id']?>" data-toggle="tooltip" title="Delete Pizza!"

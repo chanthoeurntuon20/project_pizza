@@ -12,7 +12,7 @@ class User extends BaseController
 	{
 		return view('auths/register');
 	}
-	
+
 	//compare email and password user before login
 	public function loginAccount()
 	{
