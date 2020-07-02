@@ -7,10 +7,10 @@
     </div>
   </div>
     <form class="auth__form" autocomplete="off" action="login" method="post">
-
       <div class="auth__form_body">
-      <?php if(session()->get('success')) :?>
-          <div class="alert alert-success" role="alert"> <?= session()->get('success') ?></div>
+        <!-- message success register if user fill correct form register-->
+        <?php if(session()->get('success')) :?>
+            <div class="alert alert-success" role="alert"><strong>Successfull!! </strong><?= session()->get('success') ?></div>
         <?php endif; ?>
         <h3 class="auth__form_title">Peperoni App</h3>
         <div>
@@ -22,6 +22,7 @@
             <label class="text-uppercase small">Password</label>
             <input type="password" class="form-control" placeholder="Password" name = "password">
           </div>
+        <!-- message error if user not fill input form login-->
            <?php if(isset($message)): ?>
             <div class="col-12">
               <div class="alert alert-danger" role="alert">

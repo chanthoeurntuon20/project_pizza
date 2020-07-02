@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2020 at 11:21 AM
+-- Generation Time: Jul 02, 2020 at 11:22 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -39,8 +39,8 @@ CREATE TABLE `pizza` (
 --
 
 INSERT INTO `pizza` (`id`, `name`, `ingredient`, `price`) VALUES
-(17, 'pizza3', 'sugar', '33$'),
-(20, 'pizz5', 'sugar,sall,ber', '22$');
+(17, 'pizza22', 'sugar', '20$'),
+(28, 'pizza1', 'sugar', '10$');
 
 -- --------------------------------------------------------
 
@@ -61,8 +61,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `address`, `role`) VALUES
-(35, 'chantha@gmail.com', '$2y$10$YzRsBHbPZjumXFT8I.wB/OA.g5KjCPKhsP4RPyJ3ZKNa30QPUEN4K', 'kampongcham', '1'),
-(36, 'tuon@gmail.com', '$2y$10$0JH/n60MYTMKFa3YVEPBuunXkODSkK78NeyN8uwRKNpKcndminHAa', 'dkf', NULL);
+(74, 'tha@gmail.com', '$2y$10$WOVoZlf4Zms1Ov3AU4HIZOHznRJ6opEl4IJqVseRr7r6J1KepEcD6', 'kampongcham', 'manager'),
+(75, 'tuon@gmail.com', '$2y$10$e0DG3CQGiJIYJT6UvF6vSOszbnICOanEJA/xU35sfDIx0KiypUkuO', 'takaev', 'normal'),
+(76, 'ka@gmail.com', '$2y$10$z6MKA07NlciHvgriyKYkzejdt7kx0JdcKFU5Rp/JGGhm2PgwQ.EV6', 'kampongcham', 'manager'),
+(77, 'ya@gmail.com', '$2y$10$7Eoqg9gV7n2hcjZ0C5.kEOdO38rANH/AngWBTPplanb2ak4X0MaPC', 'kampongcham', 'manager'),
+(78, 'dara@gmail.com', '$2y$10$3S7OwHpfy/AOtjW4PmAemeUQR1vtKzc8Ok.mfj7uxUGvQzSKnLfq6', 'kampongcham', 'manager');
 
 --
 -- Indexes for dumped tables
@@ -88,13 +91,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `pizza`
 --
 ALTER TABLE `pizza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

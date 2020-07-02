@@ -15,6 +15,7 @@
             list-style-type: none;
         }
    </style>
+    <?= $this->renderSection('content') ?>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -22,7 +23,21 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });
+      
+	 $(document).ready(function(){
+		$('.editPizza').on('click',function(){
+			$tr = $(this).closest('tr');
+			var data = $tr.children('td').map(function(){
+				return $(this).text();
+			}).get();
+			$('#id').val(data[0]);
+			$('#name').val(data[1]);
+			$('#ingredient').val(data[2]);
+			$('#price').val(data[3]);
+		});
+	})
+
     </script>
-    <?= $this->renderSection('content') ?>
+
 </body>
 </html>

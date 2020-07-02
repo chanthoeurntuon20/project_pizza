@@ -30,10 +30,9 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->add('/', 'User::siginAccount');
+$routes->add('/', 'User::siginForm');
 $routes->add('login', 'User::loginAccount');
-$routes->add('signup', 'User::sigupAccount');
-$routes->add('signin', 'User::logout');
+$routes->add('signup', 'User::sigupForm');
 $routes->add('register','User::registerAccount');
 
 $routes->group('pizza', function($routes)
@@ -41,7 +40,6 @@ $routes->group('pizza', function($routes)
     $routes->add('/', 'Pizza::listPizza');
     $routes->add('create', 'Pizza::createPizza');
     $routes->add('delete/(:num)', 'Pizza::deletePizza/$1');
-	$routes->add('updateForm/(:num)','Pizza::updateForm/$1');
 	$routes->add('update', 'Pizza:updatePizza');
 });
 

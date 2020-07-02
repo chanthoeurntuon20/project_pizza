@@ -9,7 +9,7 @@ class Pizza extends BaseController
 		$data['pizzas'] = $pizzaModel->findAll();
 		return view('index',$data);
 	}
-	//create pizza
+	//add pizza to database
 	public function createPizza(){
 		$data = [];
 		if($this->request->getMethod() == "post"){
@@ -45,13 +45,7 @@ class Pizza extends BaseController
 		$pizzaModel->delete($id);
 		return redirect()->to('/pizza');
 	}
-	//pass value to form update
-	public function updateForm($id){
-		$pizzaModel = new PizzaModel();
-		$data['pizza'] = $pizzaModel->find($id);
-		return view('index',$data);
-	}
-	//update pizza
+	// update pizza
 	public function updatePizza(){
 		$data = [];
 		if($this->request->getMethod() == "post"){
@@ -64,9 +58,8 @@ class Pizza extends BaseController
 			 if($this->validate($rules)){
 				$pizzaModel = new PizzaModel();
 				$id = $this->request->getVar('id');
-				$id = $pizzaModel->where('id')->first();
 				$pizzaName = $this->request->getVar('name');
-				$pizzaPrice = $this->request->getVar('price')."$";
+				$pizzaPrice = $this->request->getVar('price');
 				$pizzaIngredient = $this->request->getVar('ingredient');
 				$pizzaData = array(
 					'name'=>$pizzaName,

@@ -28,6 +28,7 @@
                 <input type="checkbox" class="form-check-input" name = "checkUser"value="1">I'm a manager
             </label>
         </div>
+        <!-- message error if user not fill input form register-->
         <?php if(isset($validation)): ?>
             <div class="col-12">
               <div class="alert alert-danger" role="alert">
@@ -42,7 +43,7 @@
           NEXT
         </button>
         <div class="mt-2">
-          <a href="/signin" class="small text-uppercase">
+          <a href="/" class="small text-uppercase">
             SIGN IN INSTEAD
           </a>
         </div>

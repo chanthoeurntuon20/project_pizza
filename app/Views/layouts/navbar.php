@@ -13,10 +13,12 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item">
-        <div class="row">
-            <a class="nav-link text-uppercase" href="/signin"><?= substr((session()->get('email')),5)?>|</a>
-            <a class="nav-link text-uppercase" href="signin">Logout</a>
-        </div>
+      <div class="row">
+      <!-- get username from email of user when login form -->
+            <a class="nav-link text-uppercase" href="/signin"><?php $username = strstr(session()->get('email'),'@',true) ?>
+          <?= $username ?>|</a>
+            <a class="nav-link text-uppercase" href="/">Logout</a>
+      </div>
       </li>
     </ul>
   </div>
