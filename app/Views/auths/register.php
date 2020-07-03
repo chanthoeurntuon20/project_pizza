@@ -2,16 +2,18 @@
 <?= $this->section('content') ?>
 <div class="auth">
   <div class="auth__header">
-        <!-- message error  if user fill incorrect form register-->
-    <?php if(session()->get('error')): ?>
-          <div class="alert alert-danger alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Error Message!:   </strong><?= session()->get('error')->listErrors() ?>
-          </div>
-      <?php endif ?>
+       
   </div>
   <div class="auth__body">
-    <form class="auth__form" autocomplete="off" action="/register" method="post">
+    <form class="auth__form" autocomplete="off" action="register" method="post">
+     <!-- message error  if user fill incorrect form register-->
+     <?php if(isset($validation)): ?>
+            <div class="col-12">
+              <div class="alert alert-danger" role="alert">
+                <?= $validation->listErrors(); ?>
+              </div>
+            </div>
+          <?php endif; ?>
       <div class="auth__form_body">
         <h3 class="auth__form_title">
         <img src="images/logo.svg" alt="" width="50">

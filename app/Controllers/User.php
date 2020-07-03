@@ -71,10 +71,8 @@ class User extends BaseController
 			];
 			// validate user information when user register form
 			 if(!$this->validate($rules)){
-				$sessionError = session();
-                $validation = $this->validator;
-                $sessionError->setFlashdata('error', $validation);
-				return view('auths/register');
+				$data['validation'] = $this->validator;
+				return view('auths/register',$data);
 
 			}else{
 				$userModel = new UserModel();
@@ -99,7 +97,7 @@ class User extends BaseController
 				$session = session();
 				// sett session on register form when successfull register
 				$session->setFlashdata('success','Successful Register!');
-				return redirect()->to('/login');
+				return redirect()->to('/');
 			}
 		}
 

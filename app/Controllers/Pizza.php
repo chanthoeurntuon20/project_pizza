@@ -17,8 +17,7 @@ class Pizza extends BaseController
 			$rules = [
 				'name'=>'required|alpha_space',
 				'price'=>'required|min_length[1]|max_length[50]',
-				'ingredient'=>'required|alpha',
-				
+				'ingredient'=>'required|alpha'
 			];	
 			 if($this->validate($rules)){
 				$pizzaModel = new PizzaModel();
